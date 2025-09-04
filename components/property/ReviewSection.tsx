@@ -1,13 +1,6 @@
+import { API_URL } from "@/constants";
 import axios from "axios";
 import { useState, useEffect } from "react";
-
-interface Review {
-  id: number;
-  name: string;
-  avatar: string;
-  rating: number;
-  comment: string;
-}
 
 const ReviewSection = ({ propertyId }) => {
   const [reviews, setReviews] = useState([]);
@@ -16,7 +9,7 @@ const ReviewSection = ({ propertyId }) => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await axios.get(`/api/properties/${propertyId}/reviews`);
+        const response = await axios.get(`${API_URL}/api/properties/${propertyId}/reviews`);
         setReviews(response.data);
       } catch (error) {
         console.error("Error fetching reviews:", error);
